@@ -1,16 +1,12 @@
 const aws = require('aws-sdk');
-
-const REGION = 'ap-northeast-1';
-const BUCKET_NAME = '';
-const ACCESS_KEY_ID = '';
-const SECRET_ACCESS_KEY = '';
+const AwsConfig = require('./AwsConfig');
 
 exports.handler = function(event, context) {
 
     aws.config.update({
-        accessKeyId: ACCESS_KEY_ID,
-        secretAccessKey: SECRET_ACCESS_KEY,
-        region: REGION
+        accessKeyId: event.ACCESS_KEY_ID,
+        secretAccessKey: event.SECRET_ACCESS_KEY,
+        region: event.REGION
     });
 
     const s3 = new aws.S3();
