@@ -1,5 +1,4 @@
 const aws = require('aws-sdk');
-const AwsConfig = require('./AwsConfig');
 
 exports.handler = function(event, context) {
 
@@ -10,12 +9,12 @@ exports.handler = function(event, context) {
     });
 
     const s3 = new aws.S3();
-    const fileName = 'hello.txt';
+    const fileName = event.fileName;
 
     const params = {
-        Bucket: BUCKET_NAME,
+        Bucket: event.BUCKET_NAME,
         Key: fileName,
-        Body: 'hellooo!',
+        Body: event.body,
         ContentType: 'text/plain; charset=utf-8',
         ACL: 'public-read'
     };
